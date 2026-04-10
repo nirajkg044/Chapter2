@@ -1,5 +1,5 @@
 # Chapter2 - Write Workflow Agents
-This chapter guides you through writing a simple workflow agents
+This chapter guides you through writing a simple workflow agents. Workflow Agents are the "Project Managers" of your system which follows a deterministic script that you define
 
 This `README.md` is designed to showcase your architectural mindset. It does explain how to write a LLM agent and run the code; it explains **why** you chose this multi-agent pattern and how the **Google ADK** handles state, reasoning, and tool-use.
 
@@ -16,7 +16,7 @@ This project moves away from monolithic prompts by utilizing a **Modular Multi-A
 ### The ADK Pipeline
 The system utilizes a `LLM-Based Agents` a standalone Intelligent Worker to accomplish a specific task
 
-1.  **root_agent (LLM-Based Agent):** Specialized in trip planner. It uses custom **Tools** to find friend availbility and frined budget for the trip.
+1.  **root_agent (SequentialAgent Agent):** Specialized in trip planner. It uses custom **Tools** to find friend availbility and frined budget for the trip.
 
 ---
 
@@ -86,14 +86,17 @@ adk web
 ## 💡 Key Agent Patterns Implemented
 
 ### **Tool Decoupling**
-Instead of the LLM "hallucinating" trip budget, This tool returns who are the freinds available for a trip and what is their budget.
+Instead of the LLM "hallucinating" trip budget, This tool returns field trip booking confirmation.
 
 ### **Stateful Sessions**
 Using the `ADK Session` service, the agent remembers user constraints (e.g., "2 friends shows availablity") across multiple turns without needing to re-send the entire chat history in every prompt.
 
-### **Skill-Set Isolation**
-The `get_FriendList` uses a specialized `SkillSet` for listing all the friends in the list.
-The `get_friend_budget` uses a specialized `SkillSet` for availbility and budget.
+### **Workflow Agents**
+1. `FriendLookupAgent` - This agent is responsible to pull list of freinds who are interested in the field trip
+2. `DestinationLookupAgent` - Based out of total freinds count, suggest the places for the field trip
+3. `ExpenseCalculatorAgent` - This agent calculate the total expenses required in the trip
+4. `BookingAgent` - This agent will book the field trip location vanue and retrun booking number
+
 
 ---
 

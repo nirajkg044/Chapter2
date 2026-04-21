@@ -9,6 +9,9 @@ This `README.md` is designed to showcase your architectural mindset. It does exp
 
 An agentic orchestration system built with the **Google Agent Development Kit (ADK)**. This project demonstrates a decoupled, multi-agent architecture designed to help friends to plan a vacation trip.
 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/47ece08c-b4e8-420e-9ee8-bc997a25e9a1" />
+
+
 ## 🏗️ Architectural Overview
 
 This project moves away from monolithic prompts by utilizing a **Modular Multi-Agent System**. By separating concerns between specialized agents, we improve reliability, reduce token overhead, and allow for deterministic guardrails.
